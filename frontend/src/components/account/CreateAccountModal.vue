@@ -3146,10 +3146,12 @@
             <Select v-model="openAICompactMode" :options="openAICompactModeOptions" />
           </div>
         </div>
-        <div class="border-y border-gray-200 py-4 dark:border-dark-600">
-          <label class="input-label">{{ t('admin.accounts.openai.compactModelMapping') }}</label>
-          <p class="input-hint">{{ t('admin.accounts.openai.compactModelMappingDesc') }}</p>
-          <div v-if="openAICompactModelMappings.length > 0" class="mb-3 space-y-2">
+        <div class="space-y-3 border-y border-gray-200 py-5 dark:border-dark-600">
+          <div>
+            <label class="input-label">{{ t('admin.accounts.openai.compactModelMapping') }}</label>
+            <p class="input-hint">{{ t('admin.accounts.openai.compactModelMappingDesc') }}</p>
+          </div>
+          <div v-if="openAICompactModelMappings.length > 0" class="space-y-2">
             <div
               v-for="(mapping, index) in openAICompactModelMappings"
               :key="getOpenAICompactModelMappingKey(mapping)"
@@ -3279,7 +3281,10 @@
       </div>
 
       <!-- Group Selection - 仅标准模式显示 -->
-      <div v-if="!authStore.isSimpleMode" class="border-t border-gray-200 pt-4 dark:border-dark-600">
+      <div
+        v-if="!authStore.isSimpleMode"
+        :class="form.platform === 'antigravity' ? '' : 'border-t border-gray-200 pt-4 dark:border-dark-600'"
+      >
         <GroupSelector
           v-model="form.group_ids"
           :groups="groups"
